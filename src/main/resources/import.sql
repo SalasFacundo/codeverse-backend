@@ -1,0 +1,10 @@
+INSERT INTO users (id, name, last_name, type) VALUES (1, 'Juan', 'Pérez', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (2, 'María', 'González', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (3, 'Carlos', 'López', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (4, 'Ana', 'Ramírez', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (5, 'Pedro', 'Sánchez', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (6, 'Sofía', 'Díaz', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (7, 'Luis', 'Martínez', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (8, 'Fernanda', 'Hernández', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (9, 'Diego', 'García', 0);
+INSERT INTO users (id, name, last_name, type) VALUES (10, 'Valentina', 'Muñoz', 0);
