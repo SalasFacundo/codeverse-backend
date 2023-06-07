@@ -25,22 +25,22 @@ public class UserController {
 	@Autowired
 	IUserService iUserService;
 	
-	@GetMapping("/users")
-	public List<User> findAll(){
+	@GetMapping("/users/all")
+	public List<User> getAll(){
 		return iUserService.getAll();
 	}
 	
-	@GetMapping("/users/{id}")
-	public User findById(@PathVariable Long id){
+	@GetMapping("/users/id/{id}")
+	public User getById(@PathVariable Long id){
 		return iUserService.getById(id);
 	}
 	
-	@PostMapping("/users")
+	@PostMapping("/users/new")
 	public User create(@RequestBody User user){
 		return iUserService.save(user);
 	}
 	
-	@PutMapping("/users/{id}")
+	@PutMapping("/users/update/{id}")
 	public User update(@RequestBody User user, @PathVariable Long id){
 		User updatedUser = iUserService.getById(id);		
 		updatedUser.setName(user.getName());
@@ -50,7 +50,7 @@ public class UserController {
 		return iUserService.save(updatedUser);
 	}
 	
-	@DeleteMapping("users/{id}")
+	@DeleteMapping("users/delete/{id}")
 	public void delete(@PathVariable Long id) {
 		iUserService.delete(id);
 	}

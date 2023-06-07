@@ -2,21 +2,17 @@ package com.codeverse.models;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="users")
+@JsonPropertyOrder({"id", "lastName", "type"})
 public class User implements Serializable{
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	Long id;
-	
+	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	Long id;	
 	String name;
 	
 	@Column(name = "last_name")

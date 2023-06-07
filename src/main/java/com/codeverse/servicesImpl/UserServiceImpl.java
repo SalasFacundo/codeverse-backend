@@ -1,4 +1,4 @@
-package com.codeverse.services;
+package com.codeverse.servicesImpl;
 
 import java.util.List;
 
@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codeverse.models.User;
-import com.codeverse.repository.UserRepository;
+import com.codeverse.repository.IUserRepository;
+import com.codeverse.services.IUserService;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserServiceImpl implements IUserService{
 
 	@Autowired
-	UserRepository userRepository;
+	IUserRepository userRepository;
 	
 	@Override
 	@Transactional( readOnly = true)
