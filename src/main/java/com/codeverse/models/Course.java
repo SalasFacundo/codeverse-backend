@@ -1,6 +1,7 @@
 package com.codeverse.models;
 
 import java.io.Serializable;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -16,12 +17,13 @@ public class Course implements Serializable{
 	String name;
 	String description;
 	Double price;
+	List<User> teachers;
 	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
-		id = id;
+		this.id = id;
 	}
 	public String getName() {
 		return name;
@@ -40,6 +42,13 @@ public class Course implements Serializable{
 	}
 	public void setPrice(Double price) {
 		this.price = price;
-	}	
+	}
+	public List<User> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(List<User> teachers) {
+		this.teachers = teachers;
+	}
+	
 		
 }

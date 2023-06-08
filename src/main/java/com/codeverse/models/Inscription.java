@@ -1,22 +1,22 @@
 package com.codeverse.models;
 
+import java.io.Serializable;
+
+import com.fasterxml.jackson.databind.JsonSerializable;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table( name = "Inscriptions")
-public class Inscription {
+public class Inscription implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	Long id;
+	Long id;	
 	
-	@OneToOne	 
-	@JoinColumn(name = "course_id")
-	Course course;
+	Long courseId;	
 	
-	@OneToOne
-	@JoinColumn(name = "student_id")
-	User student;
+	Long studentId;
 
 	public Long getId() {
 		return id;
@@ -26,21 +26,19 @@ public class Inscription {
 		this.id = id;
 	}
 
-	public Course getCourse() {
-		return course;
+	public Long getCourseId() {
+		return courseId;
 	}
 
-	public void setCourse(Course course) {
-		this.course = course;
+	public void setCourseId(Long courseId) {
+		this.courseId = courseId;
 	}
 
-	public User getStudent() {
-		return student;
+	public Long getStudentId() {
+		return studentId;
 	}
 
-	public void setStudent(User student) {
-		this.student = student;
+	public void setStudentId(Long studentId) {
+		this.studentId = studentId;
 	}
-	
-	
 }

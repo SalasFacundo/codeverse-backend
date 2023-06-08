@@ -19,7 +19,6 @@ public class User implements Serializable{
 	String lastName;
 	int type;
 	
-	
 	public Long getId() {
 		return id;
 	}
