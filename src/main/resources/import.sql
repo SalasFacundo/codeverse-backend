@@ -19,3 +19,6 @@ INSERT INTO courses (id, name, description, price) VALUES (7, 'Seguridad Inform�
 INSERT INTO courses (id, name, description, price) VALUES (8, 'Inteligencia Artificial', 'Curso que introduce los conceptos y aplicaciones de la inteligencia artificial.', 169.99);
 INSERT INTO courses (id, name, description, price) VALUES (9, 'Desarrollo de Aplicaciones Móviles', 'Aprende a crear aplicaciones móviles para dispositivos iOS y Android.', 119.99);
 INSERT INTO courses (id, name, description, price) VALUES (10, 'Análisis de Datos con Python', 'Curso que enseña técnicas de análisis y visualización de datos utilizando Python.', 99.99);
+
+
+INSERT INTO Inscriptions (course_id, student_id) VALUES (1, 1);
