@@ -12,16 +12,16 @@ import jakarta.persistence.*;
 public class Course implements Serializable{
 	
 	@Id	@GeneratedValue(strategy=GenerationType.IDENTITY) 
-	Long Id;
+	Long id;
 	String name;
 	String description;
-	Double price;	
+	Double price;
 	
 	public Long getId() {
-		return Id;
+		return id;
 	}
 	public void setId(Long id) {
-		Id = id;
+		id = id;
 	}
 	public String getName() {
 		return name;
@@ -40,10 +40,6 @@ public class Course implements Serializable{
 	}
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-	
-	
-	
-	
+	}	
 		
 }
