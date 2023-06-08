@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codeverse.models.Course;
 import com.codeverse.repository.ICourseRepository;
+import com.codeverse.services.ICourseService;
 
 @RestController
 @CrossOrigin (origins= {"http://localhost:4200/"})
@@ -23,34 +24,34 @@ import com.codeverse.repository.ICourseRepository;
 public class CourseController {
 
 	@Autowired
-	ICourseRepository iCourseRepository;
+	ICourseService iCourseService;
 	
 	@GetMapping("/courses/all")
 	public List<Course> getAll(){
-		return iCourseRepository.findAll();
+		return iCourseService.findAll();
 	}
 	
 	@GetMapping("/courses/id/{id}")
 	public Course getById(@PathVariable Long id) {
-		return iCourseRepository.findById(id).orElse(null);
+		return iCourseService.findById(id);
 	}
 	
 	@PostMapping("/courses/new")
 	public Course create(@RequestBody Course course) {
-		return iCourseRepository.save(course);
+		return iCourseService.save(course);
 	}
 	
 	@PutMapping("/courses/update/{id}")
 	public Course update(@RequestBody Course course, @PathVariable Long id) {
-		Course updatedCourse = iCourseRepository.findById(id).orElse(null);
+		Course updatedCourse = iCourseService.findById(id);
 		updatedCourse.setName(course.getName());
 		updatedCourse.setPrice(course.getPrice());
 		updatedCourse.setDescription(course.getDescription());		
-		return iCourseRepository.save(updatedCourse);
+		return iCourseService.save(updatedCourse);
 	}
 	
 	@DeleteMapping("/courses/delete/{id}")
 	public void delete(@PathVariable Long id) {
-		iCourseRepository.deleteById(id);
+		iCourseService.delete(id);
 	}
 }
