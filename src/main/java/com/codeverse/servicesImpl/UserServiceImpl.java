@@ -41,4 +41,9 @@ public class UserServiceImpl implements IUserService{
 		userRepository.deleteById(id);		
 	}
 
+	@Transactional( readOnly = true)
+	public List<User> validLogin(String email, String password) {
+		return userRepository.validLogin(email, password);
+	}
+
 }

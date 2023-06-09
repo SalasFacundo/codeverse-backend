@@ -1,4 +1,4 @@
-INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('123456789', 'John', 'Doe', 'john.doe@example.com', 'password123', 'student');
+INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('123456789', 'John', 'Doe', 'admin@admin', 'admin', 'admin');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('987654321', 'Jane', 'Smith', 'jane.smith@example.com', 'password456', 'teacher');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('456789123', 'Michael', 'Johnson', 'michael.johnson@example.com', 'password789', 'teacher');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('321654987', 'Emily', 'Davis', 'emily.davis@example.com', 'passwordabc', 'teacher');

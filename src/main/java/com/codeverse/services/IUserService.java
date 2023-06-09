@@ -12,4 +12,5 @@ public interface IUserService{
 	public User getById(Long id);
 	public User save(User user);
 	public void delete(Long id);
+	public List<User> validLogin(String email, String password);
 }

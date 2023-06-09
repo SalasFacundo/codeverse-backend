@@ -57,4 +57,9 @@ public class UserController {
 	public void delete(@PathVariable Long id) {
 		iUserService.delete(id);
 	}
+
+	@GetMapping("users/validLogin/{email}/{password}")
+	public List<User> validLogin(@PathVariable String email, @PathVariable String password){
+		return iUserService.validLogin(email, password);
+	}
 }
