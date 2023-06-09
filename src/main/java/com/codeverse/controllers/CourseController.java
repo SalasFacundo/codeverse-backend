@@ -45,8 +45,15 @@ public class CourseController {
 	public Course update(@RequestBody Course course, @PathVariable Long id) {
 		Course updatedCourse = iCourseService.findById(id);
 		updatedCourse.setName(course.getName());
+		updatedCourse.setDescription(course.getDescription());
+		updatedCourse.setCapacity(course.getCapacity());
+		updatedCourse.setTeacherId(course.getTeacherId());
+		updatedCourse.setClassesId(course.getClassesId());
 		updatedCourse.setPrice(course.getPrice());
-		updatedCourse.setDescription(course.getDescription());		
+		updatedCourse.setStartDate(course.getStartDate());
+		updatedCourse.setEndDate(course.getEndDate());
+		updatedCourse.setStartHour(course.getStartHour());
+		updatedCourse.setEndHour(course.getEndHour());
 		return iCourseService.save(updatedCourse);
 	}
 	

@@ -45,7 +45,10 @@ public class UserController {
 		User updatedUser = iUserService.getById(id);		
 		updatedUser.setName(user.getName());
 		updatedUser.setLastName(user.getLastName());
-		updatedUser.setType(user.getType());
+		updatedUser.setDni(user.getDni());
+		updatedUser.setEmail(user.getEmail());
+		updatedUser.setPassword(user.getPassword());
+		updatedUser.setRole(user.getRole());
 		
 		return iUserService.save(updatedUser);
 	}
