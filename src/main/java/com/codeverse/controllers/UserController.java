@@ -81,7 +81,7 @@ public class UserController {
 
 		if(usuario.isEmpty()) {
 			response.put("mensaje", "Datos incorrectos");
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.UNAUTHORIZED);
 		} else {
 			response.put("usuario", usuario);
 		}
