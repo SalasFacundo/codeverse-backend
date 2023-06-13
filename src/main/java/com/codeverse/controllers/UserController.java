@@ -1,8 +1,11 @@
 package com.codeverse.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -26,22 +29,30 @@ public class UserController {
 	IUserService iUserService;
 	
 	@GetMapping("/users/all")
-	public List<User> getAll(){
-		return iUserService.getAll();
+	public ResponseEntity<?> getAll(){
+		Map<String, Object> response = new HashMap<>();
+		response.put("usuarios", iUserService.getAll());
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/users/id/{id}")
-	public User getById(@PathVariable Long id){
-		return iUserService.getById(id);
+	public ResponseEntity<?> getById(@PathVariable Long id){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("usuario", iUserService.getById(id));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/users/new")
-	public User create(@RequestBody User user){
-		return iUserService.save(user);
+	public ResponseEntity<?> create(@RequestBody User user){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("usuario", iUserService.save(user));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/users/update/{id}")
-	public User update(@RequestBody User user, @PathVariable Long id){
+	public ResponseEntity<?> update(@RequestBody User user, @PathVariable Long id){
+		Map<String, Object> response = new HashMap<String, Object>();
+
 		User updatedUser = iUserService.getById(id);		
 		updatedUser.setName(user.getName());
 		updatedUser.setLastName(user.getLastName());
@@ -50,16 +61,30 @@ public class UserController {
 		updatedUser.setPassword(user.getPassword());
 		updatedUser.setRole(user.getRole());
 		
-		return iUserService.save(updatedUser);
+		response.put("usuario", iUserService.save(updatedUser));
+
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("users/delete/{id}")
-	public void delete(@PathVariable Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Map<String, Object> response = new HashMap<String, Object>();
 		iUserService.delete(id);
+		response.put("mensaje", "El usuario ha sido eliminado con exito");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 
 	@GetMapping("users/validLogin/{email}/{password}")
-	public List<User> validLogin(@PathVariable String email, @PathVariable String password){
-		return iUserService.validLogin(email, password);
+	public ResponseEntity<?> validLogin(@PathVariable String email, @PathVariable String password){
+		Map<String, Object> response = new HashMap<String, Object>();
+		List<User> usuario = iUserService.validLogin(email, password);
+
+		if(usuario.isEmpty()) {
+			response.put("mensaje", "Datos incorrectos");
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		} else {
+			response.put("usuario", usuario);
+		}
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 }
