@@ -1,8 +1,14 @@
 package com.codeverse.controllers;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import javax.swing.text.html.parser.Entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,22 +33,30 @@ public class CourseController {
 	ICourseService iCourseService;
 	
 	@GetMapping("/courses/all")
-	public List<Course> getAll(){
-		return iCourseService.findAll();
+	public ResponseEntity<?> getAll(){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("courses", iCourseService.findAll());
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/courses/id/{id}")
-	public Course getById(@PathVariable Long id) {
-		return iCourseService.findById(id);
+	public ResponseEntity<?> getById(@PathVariable Long id) {
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("course", iCourseService.findById(id));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/courses/new")
-	public Course create(@RequestBody Course course) {
-		return iCourseService.save(course);
+	public ResponseEntity<?> create(@RequestBody Course course) {
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("course", iCourseService.save(course));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/courses/update/{id}")
-	public Course update(@RequestBody Course course, @PathVariable Long id) {
+	public ResponseEntity<?> update(@RequestBody Course course, @PathVariable Long id) {
+		Map<String, Object> response = new HashMap<String, Object>();
+
 		Course updatedCourse = iCourseService.findById(id);
 		updatedCourse.setName(course.getName());
 		updatedCourse.setDescription(course.getDescription());
@@ -54,11 +68,15 @@ public class CourseController {
 		updatedCourse.setEndDate(course.getEndDate());
 		updatedCourse.setStartHour(course.getStartHour());
 		updatedCourse.setEndHour(course.getEndHour());
-		return iCourseService.save(updatedCourse);
+		response.put("courses", iCourseService.save(updatedCourse));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("/courses/delete/{id}")
-	public void delete(@PathVariable Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Map<String, Object> response = new HashMap<String, Object>();
 		iCourseService.delete(id);
+		response.put("mensaje", "El curso ha sido eliminado con exito");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 }
