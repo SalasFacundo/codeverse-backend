@@ -1,8 +1,11 @@
 package com.codeverse.controllers;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codeverse.models.Inscription;
-import com.codeverse.models.User;
 import com.codeverse.services.IInscriptionService;
-import com.codeverse.services.IUserService;
 
 @RestController
 @CrossOrigin (origins= {"http://localhost:4200/"})
@@ -27,31 +28,42 @@ public class InscriptionController {
 	IInscriptionService iInscriptionService;
 	
 	@GetMapping("/inscriptions/all")
-	public List<Inscription> findAll(){
-		return iInscriptionService.findAll();
+	public ResponseEntity<?> findAll(){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("inscriptions", iInscriptionService.findAll());
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/inscriptions/id/{id}")
-	public Inscription getById(@PathVariable Long id){
-		return iInscriptionService.findById(id);
+	public ResponseEntity<?> getById(@PathVariable Long id){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("inscription", iInscriptionService.findAll());
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/inscriptions/new")
-	public Inscription create(@RequestBody Inscription inscription){
-		return iInscriptionService.save(inscription);
+	public ResponseEntity<?> create(@RequestBody Inscription inscription){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("inscription", iInscriptionService.save(inscription));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/inscriptions/update/{id}")
-	public Inscription update(@RequestBody Inscription inscription, @PathVariable Long id){
+	public ResponseEntity<?> update(@RequestBody Inscription inscription, @PathVariable Long id){
+		Map<String, Object> response = new HashMap<String, Object>();
 		Inscription updatedInscription = iInscriptionService.findById(id);		
 		updatedInscription.setCourseId(inscription.getCourseId());
 		updatedInscription.setStudentId(inscription.getStudentId());
+		response.put("inscription", iInscriptionService.save(updatedInscription));
 		
-		return iInscriptionService.save(updatedInscription);
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
 	@DeleteMapping("inscriptions/delete/{id}")
-	public void delete(@PathVariable Long id) {
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+		Map<String, Object> response = new HashMap<String, Object>();
 		iInscriptionService.delete(id);
+		response.put("mensaje", "Inscripcion eliminada con exito");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 }
