@@ -19,13 +19,13 @@ public class UserServiceImpl implements IUserService{
 	
 	@Override
 	@Transactional( readOnly = true)
-	public List<User> getAll() {	
+	public List<User> findAll() {	
 		return userRepository.findAll();
 	}
 
 	@Override
 	@Transactional( readOnly = true)
-	public User getById(Long id) {		
+	public User findById(Long id) {		
 		return userRepository.findById(id).orElse(null);
 	}
 

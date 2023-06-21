@@ -37,14 +37,21 @@ public class InscriptionController {
 	@GetMapping("/inscriptions/id/{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id){
 		Map<String, Object> response = new HashMap<String, Object>();
-		response.put("inscription", iInscriptionService.findAll());
+		response.put("inscription", iInscriptionService.findById(id));
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@PostMapping("/inscriptions/new")
 	public ResponseEntity<?> create(@RequestBody Inscription inscription){
 		Map<String, Object> response = new HashMap<String, Object>();
-		response.put("inscription", iInscriptionService.save(inscription));
+		
+		try {
+			response.put("inscription", iInscriptionService.save(inscription));
+		} catch (Exception e) {
+			response.put("error", e.getMessage());
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}		
+		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 	
@@ -54,7 +61,12 @@ public class InscriptionController {
 		Inscription updatedInscription = iInscriptionService.findById(id);		
 		updatedInscription.setCourseId(inscription.getCourseId());
 		updatedInscription.setStudentId(inscription.getStudentId());
-		response.put("inscription", iInscriptionService.save(updatedInscription));
+		try {
+			response.put("inscription", iInscriptionService.save(updatedInscription));
+		} catch (Exception e) {
+			response.put("error", e.getMessage());
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
@@ -65,5 +77,33 @@ public class InscriptionController {
 		iInscriptionService.delete(id);
 		response.put("mensaje", "Inscripcion eliminada con exito");
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+	}
+	
+	@GetMapping("inscriptions/CourseId/{id}")
+	public ResponseEntity<?> getInscriptionByCourseId(@PathVariable Long id){
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		try {
+			response.put("Inscripciones", iInscriptionService.getInscriptionByCourseId(id));
+		} catch (Exception e) {
+			response.put("error", e.getMessage());
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("inscriptions/UserId/{id}")
+	public ResponseEntity<?> getInscriptionByUserId(@PathVariable Long id){
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		try {
+			response.put("Inscripciones", iInscriptionService.getInscriptionByUserId(id));
+		} catch (Exception e) {
+			response.put("error", e.getMessage());
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		}
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 }

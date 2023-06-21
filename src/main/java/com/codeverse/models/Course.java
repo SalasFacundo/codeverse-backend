@@ -93,4 +93,12 @@ public class Course implements Serializable{
 	public void setEndHour(LocalTime endHour) {
 		this.endHour = endHour;
 	}
+	@Override
+	public String toString() {
+		return "Course [id=" + id + ", name=" + name + ", description=" + description + ", capacity=" + capacity
+				+ ", teacherId=" + teacherId + ", classesId=" + classesId + ", price=" + price + ", startDate="
+				+ startDate + ", endDate=" + endDate + ", startHour=" + startHour + ", endHour=" + endHour + "]";
+	}
+	
+	
 }

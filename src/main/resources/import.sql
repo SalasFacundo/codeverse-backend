@@ -10,9 +10,9 @@ INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('7418529
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('258369147', 'Sophia', 'Lee', 'sophia.lee@example.com', 'passwordstu', 'user');
 
 
-INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price, start_date, end_date, start_hour, end_hour) VALUES ('Curso 1', 'Descripción del curso 1', 20, 2, '1, 2, 3', 99.99, '2023-06-10', '2023-07-10', '09:00:00', '12:00:00');
-INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price, start_date, end_date, start_hour, end_hour) VALUES ('Curso 2', 'Descripción del curso 2', 30, 3, '4, 5, 6', 149.99, '2023-06-15', '2023-07-15', '13:00:00', '16:00:00');
-INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price, start_date, end_date, start_hour, end_hour) VALUES ('Curso 3', 'Descripción del curso 3', 15, 4, '7, 8, 9', 199.99, '2023-06-20', '2023-07-20', '10:00:00', '13:00:00');
+INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price, start_date, end_date, start_hour, end_hour) VALUES ('Curso 1', 'Descripción del curso 1', 20, 2, '1, 2, 3', 999, '2023-06-10', '2023-07-10', '09:00:00', '12:00:00');
+INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price, start_date, end_date, start_hour, end_hour) VALUES ('Curso 2', 'Descripción del curso 2', 30, 3, '4, 5, 6', 149, '2023-06-15', '2023-07-15', '13:00:00', '16:00:00');
+INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price, start_date, end_date, start_hour, end_hour) VALUES ('Curso 3', 'Descripción del curso 3', 15, 4, '7, 8, 9', 199, '2023-06-20', '2023-07-20', '10:00:00', '13:00:00');
 
 
 INSERT INTO Inscriptions (course_id, student_id) VALUES (1, 1);

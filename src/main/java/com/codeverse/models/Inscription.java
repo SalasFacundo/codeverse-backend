@@ -8,13 +8,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table( name = "Inscriptions")
-public class Inscription implements Serializable {
-	
+public class Inscription implements Serializable {	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long id;	
 	
-	Long courseId;	
+	Long courseId;
 	
 	Long studentId;
 

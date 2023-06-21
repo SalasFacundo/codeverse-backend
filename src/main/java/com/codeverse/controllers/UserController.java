@@ -31,14 +31,14 @@ public class UserController {
 	@GetMapping("/users/all")
 	public ResponseEntity<?> getAll(){
 		Map<String, Object> response = new HashMap<>();
-		response.put("usuarios", iUserService.getAll());
+		response.put("usuarios", iUserService.findAll());
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
 	@GetMapping("/users/id/{id}")
 	public ResponseEntity<?> getById(@PathVariable Long id){
 		Map<String, Object> response = new HashMap<String, Object>();
-		response.put("usuario", iUserService.getById(id));
+		response.put("usuario", iUserService.findById(id));
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
@@ -53,7 +53,7 @@ public class UserController {
 	public ResponseEntity<?> update(@RequestBody User user, @PathVariable Long id){
 		Map<String, Object> response = new HashMap<String, Object>();
 
-		User updatedUser = iUserService.getById(id);		
+		User updatedUser = iUserService.findById(id);		
 		updatedUser.setName(user.getName());
 		updatedUser.setLastName(user.getLastName());
 		updatedUser.setDni(user.getDni());

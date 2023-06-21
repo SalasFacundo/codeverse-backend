@@ -7,6 +7,8 @@ import com.codeverse.models.Inscription;
 public interface IInscriptionService {
 	public List<Inscription> findAll();
 	public Inscription findById(Long id);
-	public Inscription save(Inscription inscription);
+	public Inscription save(Inscription inscription) throws Exception;
 	public void delete(Long id);
+	public List<Inscription> getInscriptionByCourseId(Long id) throws Exception;
+	public List<Inscription> getInscriptionByUserId(Long id) throws Exception;
 }
