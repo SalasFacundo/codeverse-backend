@@ -21,4 +21,8 @@ public interface IInscriptionRepository extends JpaRepository<Inscription, Long>
 	 @Modifying
 	 @Query("DELETE FROM Inscription u WHERE u.studentId = :studentId AND u.courseId = :courseId")
 	 void deleteUserFromInscription(@Param("studentId") Long studentId, @Param("courseId") Long courseId);
+	 
+	 @Modifying
+	 @Query("DELETE FROM Inscription u WHERE u.studentId = :studentId")
+	 void deleteInscriptionByUserId(@Param("studentId") Long studentId);
 }

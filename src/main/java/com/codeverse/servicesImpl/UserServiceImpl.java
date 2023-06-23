@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.codeverse.models.User;
+import com.codeverse.repository.IInscriptionRepository;
 import com.codeverse.repository.IUserRepository;
 import com.codeverse.services.IUserService;
 
@@ -16,6 +17,9 @@ public class UserServiceImpl implements IUserService{
 
 	@Autowired
 	IUserRepository userRepository;
+	
+	@Autowired
+	IInscriptionRepository iInscriptionRepository;
 	
 	@Override
 	@Transactional( readOnly = true)
@@ -43,6 +47,7 @@ public class UserServiceImpl implements IUserService{
 	@Override
 	@Transactional( readOnly = false)
 	public void delete(Long id) {
+		iInscriptionRepository.deleteInscriptionByUserId(id);
 		userRepository.deleteById(id);		
 	}
 
