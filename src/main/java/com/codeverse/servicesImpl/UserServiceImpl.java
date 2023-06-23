@@ -30,6 +30,11 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
+	public List<User> findByRole(String role) {
+		return userRepository.findByRole(role);
+	}
+	
+	@Override
 	@Transactional( readOnly = false)
 	public User save(User user) {		
 		return userRepository.save(user);
@@ -45,5 +50,6 @@ public class UserServiceImpl implements IUserService{
 	public List<User> validLogin(String email, String password) {
 		return userRepository.validLogin(email, password);
 	}
+
 
 }

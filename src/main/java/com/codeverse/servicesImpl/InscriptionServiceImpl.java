@@ -1,6 +1,7 @@
 package com.codeverse.servicesImpl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,18 +18,20 @@ import com.codeverse.services.ICourseService;
 import com.codeverse.services.IInscriptionService;
 import com.codeverse.services.IUserService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class InscriptionServiceImpl implements IInscriptionService {
 	
 	@Autowired
 	IInscriptionRepository iInscriptionRepository;	
-	
+
 	@Autowired
 	IUserService iUserService;
-	
+
 	@Autowired
 	ICourseService iCourseService;
-	
+
 	@Override
 	public List<Inscription> findAll() {
 		return iInscriptionRepository.findAll();
@@ -56,7 +59,7 @@ public class InscriptionServiceImpl implements IInscriptionService {
 	public void delete(Long id) {
 		iInscriptionRepository.deleteById(id);		
 	}
-	
+
 	@Override
 	public List<Inscription> getInscriptionByCourseId(Long id) throws Exception{
 		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionByCourseId(id);
@@ -68,7 +71,7 @@ public class InscriptionServiceImpl implements IInscriptionService {
 		}
 		
 	}
-	
+
 	@Override
 	public List<Inscription> getInscriptionByUserId(Long id) throws Exception{
 		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionByUserId(id);
@@ -79,6 +82,23 @@ public class InscriptionServiceImpl implements IInscriptionService {
 			return inscriptions;
 		}
 		
+	}
+
+	@Override
+	public List<User> getStudentsByCourseId(Long id){
+		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionByCourseId(id);
+		List<User> students = new ArrayList<User>();
+		
+		inscriptions.stream().forEach( inscription -> {
+			students.add(iUserService.findById(inscription.getStudentId()));
+		});		
+		return students;
+	}
+
+	@Transactional
+	@Override	
+	public void deleteUserFromInscription(Long studentId, Long courseId){
+		iInscriptionRepository.deleteUserFromInscription(studentId, courseId);
 	}
 
 }

@@ -12,5 +12,8 @@ public interface IUserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
     List<User> validLogin(@Param("email") String email, @Param("password") String password);
+    
+    @Query("SELECT u FROM User u WHERE u.role = :role")
+    List<User> findByRole(@Param("role") String role);
 }
 

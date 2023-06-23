@@ -42,6 +42,13 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
+	@GetMapping("/users/role/{role}")
+	public ResponseEntity<?> getByRole(@PathVariable String role){
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("usuarios", iUserService.findByRole(role));
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
 	@PostMapping("/users/new")
 	public ResponseEntity<?> create(@RequestBody User user){
 		Map<String, Object> response = new HashMap<String, Object>();

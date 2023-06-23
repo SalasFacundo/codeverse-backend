@@ -106,4 +106,34 @@ public class InscriptionController {
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
+	
+	@GetMapping("inscriptions/studentsByCourseId/{courseId}")
+	public ResponseEntity<?> getStudentsByCourseId(@PathVariable Long courseId){
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		response.put("usuarios", iInscriptionService.getStudentsByCourseId(courseId));
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("inscriptions/deleteUserFromInscription/{studentId}/{courseId}")
+	public ResponseEntity<?> deleteUserFromInscription(@PathVariable Long studentId, @PathVariable Long courseId){
+		Map<String, Object> response = new HashMap<String, Object>();
+		iInscriptionService.deleteUserFromInscription(studentId, courseId);		 
+		response.put("mensaje", "inscripcion eliminada");
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
