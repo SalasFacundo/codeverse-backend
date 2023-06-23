@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.codeverse.models.Course;
 import com.codeverse.repository.ICourseRepository;
+import com.codeverse.repository.IInscriptionRepository;
 import com.codeverse.services.ICourseService;
 
 @Service
@@ -14,6 +15,9 @@ public class CourseServiceImpl implements ICourseService{
 
 	@Autowired
 	private ICourseRepository iCourseRepository;
+	
+	@Autowired
+	private IInscriptionRepository iInscriptionRepository;
 	
 	@Override
 	public List<Course> findAll() {
@@ -32,6 +36,7 @@ public class CourseServiceImpl implements ICourseService{
 
 	@Override
 	public void delete(Long id) {
+		iInscriptionRepository.deleteInscriptionByCourseId(id);
 		iCourseRepository.deleteById(id);		
 	}
 
