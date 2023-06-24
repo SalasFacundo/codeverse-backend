@@ -141,6 +141,17 @@ public class InscriptionController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
+	@GetMapping("inscriptions/coursesNotBuyedByStudentId/{studentId}")
+	public ResponseEntity<?> getCoursesNotBuyedByStudentId(@PathVariable Long studentId){
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		response.put("courses", iInscriptionService.getCoursesNotBuyedByStudentId(studentId));
+		
+		System.out.println("RESPONSE");
+		System.out.println(response);
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
 	
 	
 	

@@ -16,7 +16,7 @@ public interface IInscriptionRepository extends JpaRepository<Inscription, Long>
 	 List<Inscription> getInscriptionByCourseId(@Param("courseId") Long courseId);
 	 
 	 @Query("SELECT u FROM Inscription u WHERE u.studentId = :studentId")
-	 List<Inscription> getInscriptionByUserId(@Param("studentId") Long studentId);
+	 List<Inscription> getInscriptionsByUserId(@Param("studentId") Long studentId);
 	 
 	 @Modifying
 	 @Query("DELETE FROM Inscription u WHERE u.studentId = :studentId AND u.courseId = :courseId")

@@ -55,9 +55,6 @@ public class CourseController {
 	
 	@PutMapping("/courses/update/{id}")
 	public ResponseEntity<?> update(@RequestBody Course course, @PathVariable Long id) {
-		
-		System.out.println("ACA ENTRA A COURSO");
-		System.out.println(course);
 		Map<String, Object> response = new HashMap<String, Object>();
 
 		Course updatedCourse = iCourseService.findById(id);

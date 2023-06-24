@@ -16,4 +16,5 @@ public interface IInscriptionService {
 	public List<User> getStudentsByCourseId(Long id);
 	public void deleteUserFromInscription(Long studentId, Long courseId);
 	public List<Course> getCoursesByStudentId(Long studentId);
+	public List<Course> getCoursesNotBuyedByStudentId(Long studentId);
 }

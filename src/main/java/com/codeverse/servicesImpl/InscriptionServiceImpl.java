@@ -2,8 +2,10 @@ package com.codeverse.servicesImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import com.codeverse.models.Course;
 import com.codeverse.models.Inscription;
 import com.codeverse.models.User;
+import com.codeverse.repository.ICourseRepository;
 import com.codeverse.repository.IInscriptionRepository;
 import com.codeverse.services.ICourseService;
 import com.codeverse.services.IInscriptionService;
@@ -24,7 +27,10 @@ import jakarta.transaction.Transactional;
 public class InscriptionServiceImpl implements IInscriptionService {
 	
 	@Autowired
-	IInscriptionRepository iInscriptionRepository;	
+	IInscriptionRepository iInscriptionRepository;
+	
+	@Autowired
+	ICourseRepository iCourseRepository;
 
 	@Autowired
 	IUserService iUserService;
@@ -74,7 +80,7 @@ public class InscriptionServiceImpl implements IInscriptionService {
 
 	@Override
 	public List<Inscription> getInscriptionByUserId(Long id) throws Exception{
-		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionByUserId(id);
+		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionsByUserId(id);
 		
 		if(inscriptions.isEmpty()) {
 			throw new Exception("No existen inscripciones con el usuario");
@@ -117,6 +123,22 @@ public class InscriptionServiceImpl implements IInscriptionService {
 		}
 		
 		return courses;
+	}
+	
+	@Override
+	public List<Course> getCoursesNotBuyedByStudentId(Long studentId){		
+		List<Course> allCourses = iCourseRepository.findAll();
+		List<Course> studentCourses =this.getCoursesByStudentId(studentId);
+		
+		List<Course> nonMatchingCourses = new ArrayList<>();
+		
+		for (Course course : allCourses) {
+		    if (!studentCourses.contains(course)) {
+		        nonMatchingCourses.add(course);
+		    }
+		}		
+		
+		return nonMatchingCourses;
 	}
 	
 	

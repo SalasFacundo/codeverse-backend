@@ -41,4 +41,11 @@ public class Inscription implements Serializable {
 	public void setStudentId(Long studentId) {
 		this.studentId = studentId;
 	}
+
+	@Override
+	public String toString() {
+		return "Inscription [id=" + id + ", courseId=" + courseId + ", studentId=" + studentId + "]";
+	}
+	
+	
 }

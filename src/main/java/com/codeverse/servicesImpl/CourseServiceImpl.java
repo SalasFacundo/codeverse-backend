@@ -1,6 +1,9 @@
 package com.codeverse.servicesImpl;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import com.codeverse.models.Course;
 import com.codeverse.repository.ICourseRepository;
 import com.codeverse.repository.IInscriptionRepository;
 import com.codeverse.services.ICourseService;
+import com.codeverse.services.IInscriptionService;
 
 @Service
 public class CourseServiceImpl implements ICourseService{
@@ -18,6 +22,9 @@ public class CourseServiceImpl implements ICourseService{
 	
 	@Autowired
 	private IInscriptionRepository iInscriptionRepository;
+	
+	/*@Autowired
+	private IInscriptionService iInscriptionService;*/
 	
 	@Override
 	public List<Course> findAll() {
@@ -39,5 +46,4 @@ public class CourseServiceImpl implements ICourseService{
 		iInscriptionRepository.deleteInscriptionByCourseId(id);
 		iCourseRepository.deleteById(id);		
 	}
-
 }
