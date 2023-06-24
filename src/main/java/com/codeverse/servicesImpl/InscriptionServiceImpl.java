@@ -100,5 +100,25 @@ public class InscriptionServiceImpl implements IInscriptionService {
 	public void deleteUserFromInscription(Long studentId, Long courseId){
 		iInscriptionRepository.deleteUserFromInscription(studentId, courseId);
 	}
+	
+	@Override
+	public List<Course> getCoursesByStudentId(Long studentId){
+
+		List<Inscription> inscriptions = new ArrayList<Inscription>();
+		List<Course> courses = new ArrayList<Course>();
+		
+		try {
+			inscriptions = this.getInscriptionByUserId(studentId);
+			inscriptions.stream().forEach(inscription -> {
+				courses.add(iCourseService.findById(inscription.getCourseId()));
+			});
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return courses;
+	}
+	
+	
 
 }

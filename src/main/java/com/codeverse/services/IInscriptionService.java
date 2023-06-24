@@ -2,6 +2,7 @@ package com.codeverse.services;
 
 import java.util.List;
 
+import com.codeverse.models.Course;
 import com.codeverse.models.Inscription;
 import com.codeverse.models.User;
 
@@ -14,4 +15,5 @@ public interface IInscriptionService {
 	public List<Inscription> getInscriptionByUserId(Long id) throws Exception;
 	public List<User> getStudentsByCourseId(Long id);
 	public void deleteUserFromInscription(Long studentId, Long courseId);
+	public List<Course> getCoursesByStudentId(Long studentId);
 }

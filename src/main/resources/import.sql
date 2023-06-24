@@ -3,7 +3,7 @@ INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('9876543
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('45678912', 'Michael', 'Johnson', 'michael.johnson@example.com', 'password789', 'teacher');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('32165498', 'Emily', 'Davis', 'emily.davis@example.com', 'passwordabc', 'teacher');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('65432198', 'Robert', 'Anderson', 'robert.anderson@example.com', 'passworddef', 'admin');
-INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('78912345', 'Jessica', 'Wilson', 'student@student.com', 'student', 'student');
+INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('78912345', 'Jessica', 'Wilson', 'student@student', 'student', 'student');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('85274196', 'David', 'Brown', 'david.brown@example.com', 'passwordjkl', 'student');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('36925814', 'Jennifer', 'Taylor', 'jennifer.taylor@example.com', 'passwordmno', 'admin');
 INSERT INTO users (dni, name, last_name, email, password, role) VALUES ('74185296', 'Daniel', 'Thomas', 'daniel.thomas@example.com', 'passwordpqr', 'user');
@@ -16,6 +16,8 @@ INSERT INTO courses (name, description, capacity, teacher_id, classes_id, price,
 
 
 INSERT INTO Inscriptions (course_id, student_id) VALUES (1, 1);
+INSERT INTO Inscriptions (course_id, student_id) VALUES (2, 1);
+INSERT INTO Inscriptions (course_id, student_id) VALUES (3, 1);
 INSERT INTO Inscriptions (course_id, student_id) VALUES (1, 2);
 INSERT INTO Inscriptions (course_id, student_id) VALUES (1, 3);
 INSERT INTO Inscriptions (course_id, student_id) VALUES (1, 4);

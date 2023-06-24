@@ -1,6 +1,8 @@
 package com.codeverse.controllers;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.codeverse.models.Course;
 import com.codeverse.models.Inscription;
+import com.codeverse.services.ICourseService;
 import com.codeverse.services.IInscriptionService;
 
 @RestController
@@ -25,7 +29,10 @@ import com.codeverse.services.IInscriptionService;
 public class InscriptionController {
 
 	@Autowired
-	IInscriptionService iInscriptionService;
+	IInscriptionService iInscriptionService;	
+	
+	@Autowired
+	ICourseService iCourseService;
 	
 	@GetMapping("/inscriptions/all")
 	public ResponseEntity<?> findAll(){
@@ -112,6 +119,15 @@ public class InscriptionController {
 		Map<String, Object> response = new HashMap<String, Object>();
 		
 		response.put("usuarios", iInscriptionService.getStudentsByCourseId(courseId));
+		
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+	}
+	
+	@GetMapping("inscriptions/coursesByStudentId/{studentId}")
+	public ResponseEntity<?> getCoursesByStudentId(@PathVariable Long studentId){
+		Map<String, Object> response = new HashMap<String, Object>();
+		
+		response.put("courses", iInscriptionService.getCoursesByStudentId(studentId));
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
