@@ -80,14 +80,12 @@ public class InscriptionServiceImpl implements IInscriptionService {
 
 	@Override
 	public List<Inscription> getInscriptionByUserId(Long id) throws Exception{
-		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionsByUserId(id);
-		
+		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionsByUserId(id);		
 		if(inscriptions.isEmpty()) {
 			throw new Exception("No existen inscripciones con el usuario");
 		} else {
 			return inscriptions;
-		}
-		
+		}		
 	}
 
 	@Override
