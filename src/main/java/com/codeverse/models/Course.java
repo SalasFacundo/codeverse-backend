@@ -20,7 +20,6 @@ public class Course implements Serializable{
 	String description;
 	int capacity;
 	Long teacherId;
-	String classesId;	
 	Double price;
 	Date startDate;
 	Date endDate;
@@ -57,12 +56,6 @@ public class Course implements Serializable{
 	public void setTeacherId(Long teacherId) {
 		this.teacherId = teacherId;
 	}
-	public String getClassesId() {
-		return classesId;
-	}
-	public void setClassesId(String classesId) {
-		this.classesId = classesId;
-	}
 	public Double getPrice() {
 		return price;
 	}
@@ -96,7 +89,7 @@ public class Course implements Serializable{
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", name=" + name + ", description=" + description + ", capacity=" + capacity
-				+ ", teacherId=" + teacherId + ", classesId=" + classesId + ", price=" + price + ", startDate="
+				+ ", teacherId=" + teacherId + ", price=" + price + ", startDate="
 				+ startDate + ", endDate=" + endDate + ", startHour=" + startHour + ", endHour=" + endHour + "]";
 	}
 	

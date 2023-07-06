@@ -1,15 +1,11 @@
 package com.codeverse.controllers;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-
-import javax.swing.text.html.parser.Entity;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codeverse.models.Course;
-import com.codeverse.repository.ICourseRepository;
 import com.codeverse.services.ICourseService;
 
 @RestController
@@ -56,17 +51,11 @@ public class CourseController {
 	@PutMapping("/courses/update/{id}")
 	public ResponseEntity<?> update(@RequestBody Course course, @PathVariable Long id) {
 		Map<String, Object> response = new HashMap<String, Object>();
-
-		Course updatedCourse = iCourseService.findById(id);
-		
-		System.out.println("CURSO ENCONTRADO");
-		System.out.println(updatedCourse);
-		
+		Course updatedCourse = iCourseService.findById(id);		
 		updatedCourse.setName(course.getName());
 		updatedCourse.setDescription(course.getDescription());
 		updatedCourse.setCapacity(course.getCapacity());
 		updatedCourse.setTeacherId(course.getTeacherId());
-		updatedCourse.setClassesId(course.getClassesId());
 		updatedCourse.setPrice(course.getPrice());
 		updatedCourse.setStartDate(course.getStartDate());
 		updatedCourse.setEndDate(course.getEndDate());

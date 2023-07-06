@@ -91,12 +91,15 @@ public class InscriptionServiceImpl implements IInscriptionService {
 	}
 
 	@Override
-	public List<User> getStudentsByCourseId(Long id){
+	public List<User> getUsersByCourseIdAndRole(Long id, String role){
 		List<Inscription> inscriptions = iInscriptionRepository.getInscriptionByCourseId(id);
 		List<User> students = new ArrayList<User>();
 		
 		inscriptions.stream().forEach( inscription -> {
-			students.add(iUserService.findById(inscription.getStudentId()));
+			User user = iUserService.findById(inscription.getStudentId());
+			if(user.getRole().equals(role)) {
+				students.add(user);				
+			}
 		});		
 		return students;
 	}

@@ -13,7 +13,7 @@ public interface IInscriptionService {
 	public void delete(Long id);
 	public List<Inscription> getInscriptionByCourseId(Long id) throws Exception;
 	public List<Inscription> getInscriptionByUserId(Long id) throws Exception;
-	public List<User> getStudentsByCourseId(Long id);
+	public List<User> getUsersByCourseIdAndRole(Long id, String role);
 	public void deleteUserFromInscription(Long studentId, Long courseId);
 	public List<Course> getCoursesByStudentId(Long studentId);
 	public List<Course> getCoursesNotBuyedByStudentId(Long studentId);

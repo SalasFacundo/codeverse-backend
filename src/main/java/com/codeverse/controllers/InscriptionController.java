@@ -114,11 +114,11 @@ public class InscriptionController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
 	
-	@GetMapping("inscriptions/studentsByCourseId/{courseId}")
-	public ResponseEntity<?> getStudentsByCourseId(@PathVariable Long courseId){
+	@GetMapping("inscriptions/studentsByCourseId/{courseId}/{role}")
+	public ResponseEntity<?> getUserByCourseIdAndRole(@PathVariable Long courseId, @PathVariable String role){
 		Map<String, Object> response = new HashMap<String, Object>();
 		
-		response.put("usuarios", iInscriptionService.getStudentsByCourseId(courseId));
+		response.put("usuarios", iInscriptionService.getUsersByCourseIdAndRole(courseId, role));
 		
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 	}
