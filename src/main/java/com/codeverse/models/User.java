@@ -22,7 +22,14 @@ public class User implements Serializable{
 	String email;
 	String password;
 	String role;
+	String foto;
 	
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 	public Long getId() {
 		return id;
 	}
